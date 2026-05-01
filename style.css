@@ -1,0 +1,538 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #0b1637, #0b173b);
+    color: #eaeaea;
+    overflow-x: hidden;
+}
+
+/* SEÇÕES */
+section {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TÍTULOS */
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 26px;
+    margin: 20px 0 10px;
+    color: #a5b4fc;
+}
+
+/* TEXTOS E LISTAS */
+section p, section ul, section ol {
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+section ul, section ol {
+    text-align: left;
+    padding-left: 40px;
+}
+
+/* MENU FIXO */
+/* NAVBAR*/
+.navbar.navbar\.menu {
+    background-color: rgba(30, 51, 116, 1) !important; /* Mudei para 1 no final para ser sólido */
+    background: rgba(30, 51, 116, 1) !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 80px;
+}
+
+/* Estilo da Logo */
+.logo img {
+    height: 60px; /* Tamanho da logo */
+    width: auto;
+}
+
+/* LISTA - Alinhada à direita */
+
+.menu-lista .nav-link:hover {
+    background-color: #3e0b63 !important;
+    border-radius: 5px;
+    color: #fff !important;
+}
+
+
+
+/* LINKS - Aumentando o tamanho das letras */
+.menu-lista li a {
+    color: white !important;
+    text-decoration: none;
+    font-size: 18px; 
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.menu-lista li a:hover {
+    background: #3e0b63;
+}
+
+@media (max-width: 768px) {
+    .navbar.menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+/* CAPA */
+.capa {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("./img/vtxlogo.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    max-width: 100%;
+}
+
+.capa-conteudo {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 700px;
+    margin: 20px;
+}
+
+
+.botao-insta {
+    background: #1e3a8a;
+    color: white !important; 
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: table; 
+    margin: 30px auto;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.botao-insta:hover {
+    background: #6d28d9;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
+}
+
+/* ESTILIZAÇÃO PADRONIZADA DOS CARDS*/
+.card, .musica-card {
+    background: #0f172a !important; /* Fundo sólido para combinar com o site */
+    border: 1px solid rgba(109, 40, 217, 0.2) !important; /* Borda sutil roxa */
+    border-radius: 15px !important;
+    padding: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação suave */
+    color: #eaeaea !important;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.card:hover, .musica-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(109, 40, 217, 0.4); 
+    border-color: #6d28d9 !important; 
+}
+
+/*PADRONIZAÇÃO DE TEXTOS DENTRO DOS CARDS */
+.card-title, .musica-card h4 {
+    color: #6d28d9 !important; /* Roxo Vortex */
+    font-family: 'Arial', sans-serif !important; 
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Subtítulo (Cargo/Função) */
+.card h4, .text-primary, .musica-card p {
+    color: #3b82f6 !important;
+    font-size: 0.9rem !important;
+    font-family: 'Arial', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 12px !important;
+    font-weight: 600;
+}
+
+/* Texto de Descrição */
+.card p, .card-text {
+    font-family: 'Arial', sans-serif !important; /* Removido o Times New Roman para modernizar */
+    font-size: 16px !important;
+    color: #cbd5f5 !important; /* Cinza claro para melhor leitura */
+    line-height: 1.6 !important;
+    text-align: left;
+    margin: 0 !important;
+}
+
+/* AJUSTE DA IMAGEM DE INTEGRANTE DENTRO DO CARD */
+.card img {
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05); /* Zoom leve na imagem ao passar o mouse */
+}
+
+/* RESPONSIVIDADE DO CARROSEL */
+.img-carousel {
+    height: 500px; /* Altura padrão para PC */
+    object-fit: cover; /* Corta a imagem sem esticar para preencher o espaço */
+    object-position: center;
+}
+
+/* Ajuste para tablets e celulares */
+@media (max-width: 768px) {
+    .img-carousel {
+        height: 300px; /* Altura menor no celular para caber na tela */
+    }
+}
+
+.carousel-indicators [button] {
+    background-color: #6d28d9; 
+}
+
+.carousel-inner {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* MULTIMÍDIA */
+video, audio {
+    display: block;
+    margin: 40px auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+
+/* FORMULÁRIO */
+form {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* BOTÃO DO FORMULÁRIO */
+
+form button {
+    background: #6d28d9;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #1e3a8a;
+}
+
+/* ESTILIZAÇÃO DA TABELA */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background-color: #1e3a8a;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+tr:hover {
+    background-color: rgba(109, 40, 217, 0.1);
+}
+
+/* MÚSICAS DO PROJETO */
+
+.musicas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.musica-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.musica-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.musica-card h4 {
+    color: #a5b4fc;
+}
+
+.musica-card p {
+    color: #cbd5f5;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.musica-card audio {
+    width: 100%;
+}
+
+/* PROJETO */
+
+.projeto-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.projeto-container p {
+    margin: 25px 0; 
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* IMAGENS NO MEIO DO TEXTO */
+.projeto-img {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.projeto-img img {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+.projeto-img img:hover {
+    transform: scale(1.03);
+}
+
+/* FOOTER CENTRALIZADO */
+
+footer {
+    width: 100%;
+    background-color: #1e3a8a;
+    padding: 30px 20px; 
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clear: both;
+}
+
+footer p {
+    margin: 0 !important;
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 16px;
+    max-width: 100% !important;
+}
+
+/* --- CATEGORIAS DE PATROCINADORES --- */
+
+/* --- CATEGORIAS DE PATROCINADORES --- */
+
+/* PLATINA */
+.patrocinador-card.card-platina {
+    border: 2px solid #D9D9D9 !important;
+}
+.patrocinador-card.card-platina:hover {
+    box-shadow: 0 15px 30px rgba(217, 217, 217, 0.4) !important;
+    border-color: #ffffff !important;
+}
+.patrocinador-card.card-platina .card-title {
+    color: #D9D9D9 !important;
+}
+
+/* DIAMANTE */
+.patrocinador-card.card-diamante {
+    border: 2px solid #70D1F4 !important;
+}
+.patrocinador-card.card-diamante:hover {
+    box-shadow: 0 15px 30px rgba(112, 209, 244, 0.4) !important;
+    border-color: #b3e9ff !important;
+}
+.patrocinador-card.card-diamante .card-title {
+    color: #70D1F4 !important;
+}
+
+/* OURO */
+.patrocinador-card.card-Ouro {
+    border: 2px solid #f1e729 !important;
+}
+.patrocinador-card.card-Ouro:hover {
+    box-shadow: 0 15px 30px rgba(241, 231, 41, 0.4) !important;
+    border-color: #fffb96 !important;
+}
+.patrocinador-card.card-Ouro .card-title {
+    color: #f1e729 !important;
+}
+
+/* PRATA */
+.patrocinador-card.card-prata {
+    border: 2px solid #c0c0c0 !important;
+}
+.patrocinador-card.card-prata:hover {
+    box-shadow: 0 15px 30px rgba(192, 192, 192, 0.4) !important;
+    border-color: #e8e8e8 !important;
+}
+.patrocinador-card.card-prata .card-title {
+    color: #c0c0c0 !important;
+}
+
+/* BRONZE */
+.patrocinador-card.card-bronze {
+    border: 2px solid #cd7f32 !important;
+}
+.patrocinador-card.card-bronze:hover {
+    box-shadow: 0 15px 30px rgba(205, 127, 50, 0.4) !important;
+    border-color: #ffa34d !important;
+}
+.patrocinador-card.card-bronze .card-title {
+    color: #cd7f32 !important;
+}
+
+
+
+/* Categoria Platina */
+
+
+/* Ajuste para o texto de categoria dentro do card */
+.categoria-texto {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* --- ANIMAÇÃO IGUAL AOS INTEGRANTES PARA PATROCINADORES --- */
+
+.patrocinador-card {
+    background: #0f172a !important;
+    border: 1px solid rgba(109, 40, 217, 0.2) !important;
+    border-radius: 15px !important;
+    padding: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #eaeaea !important;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.patrocinadores-h2 {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+.patrocinadores-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Efeito de flutuar e brilhar (Hover) */
+.patrocinador-card:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+/* Efeito de zoom na imagem/logo igual aos integrantes */
+.patrocinador-card img {
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+    width: 90%;
+    height: auto;
+    max-height: 210px;
+    object-fit: contain;
+}
+
+.patrocinador-card:hover img {
+    transform: scale(1.05);
+}
+
+
+
+
