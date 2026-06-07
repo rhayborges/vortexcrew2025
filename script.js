@@ -9,18 +9,20 @@ document.addEventListener("DOMContentLoaded", function() {
     // ------------------------------------------------------------
     // 1. ATIVA ANIMAÇÕES AOS
     // ------------------------------------------------------------
-    AOS.init({
-        duration: 800,
-        once: true,
-        easing: 'ease-out'
-    });
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out'
+        });
+    }
 
     // ------------------------------------------------------------
-    // 2. CONTAGEM REGRESSIVA (15 DIAS PARA O CANADÁ)
+    // 2. CONTAGEM REGRESSIVA PARA 22/10/2026
     // ------------------------------------------------------------
-    const dataViagem = new Date();
-    dataViagem.setDate(dataViagem.getDate() + 168);
-    dataViagem.setHours(10, 00, 00, 999);
+    // DATA DA COMPETIÇÃO: 22 de Outubro de 2026 às 10:00
+    // Mês em JavaScript é 0-index: Outubro = 9 (Janeiro=0, Fevereiro=1... Outubro=9)
+    const dataViagem = new Date(2026, 9, 22, 10, 0, 0);
     const targetTime = dataViagem.getTime();
 
     function atualizarContador() {
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("horas").innerHTML = "00";
             document.getElementById("minutos").innerHTML = "00";
             document.getElementById("segundos").innerHTML = "00";
+            console.log("🎉 COMPETIÇÃO NO CANADÁ COMEÇOU! 🎉");
             return;
         }
 
@@ -45,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("minutos").innerHTML = minutos < 10 ? "0" + minutos : minutos;
         document.getElementById("segundos").innerHTML = segundos < 10 ? "0" + segundos : segundos;
 
-        console.log("Contagem atualizada:", dias, "dias");
+        console.log("Contagem atualizada:", dias, "dias", horas, "horas");
     }
 
     atualizarContador();
@@ -60,25 +63,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (contatoForm) {
         contatoForm.addEventListener("submit", function(event) {
-            const nome = document.querySelector('input[name="nome"]').value.trim();
-            const email = document.querySelector('input[name="_replyto"]').value.trim();
-            const mensagem = document.querySelector('textarea[name="mensagem"]').value.trim();
+            const nome = document.querySelector('input[name="nome"]')?.value.trim() || '';
+            const email = document.querySelector('input[name="_replyto"]')?.value.trim() || '';
+            const mensagem = document.querySelector('textarea[name="mensagem"]')?.value.trim() || '';
 
             if (!nome || !email || !mensagem) {
                 event.preventDefault();
-                feedbackDiv.className = "form-feedback erro";
-                feedbackDiv.textContent = "⚠️ Por favor, preencha todos os campos antes de enviar.";
-                if (!nome) document.querySelector('input[name="nome"]').style.borderColor = "#f87171";
-                if (!email) document.querySelector('input[name="_replyto"]').style.borderColor = "#f87171";
-                if (!mensagem) document.querySelector('textarea[name="mensagem"]').style.borderColor = "#f87171";
+                if (feedbackDiv) {
+                    feedbackDiv.className = "form-feedback erro";
+                    feedbackDiv.textContent = "⚠️ Por favor, preencha todos os campos antes de enviar.";
+                }
+                if (!nome && document.querySelector('input[name="nome"]')) 
+                    document.querySelector('input[name="nome"]').style.borderColor = "#f87171";
+                if (!email && document.querySelector('input[name="_replyto"]')) 
+                    document.querySelector('input[name="_replyto"]').style.borderColor = "#f87171";
+                if (!mensagem && document.querySelector('textarea[name="mensagem"]')) 
+                    document.querySelector('textarea[name="mensagem"]').style.borderColor = "#f87171";
                 return;
             }
 
-            feedbackDiv.className = "form-feedback sucesso";
-            feedbackDiv.textContent = "✅ Mensagem enviada com sucesso! Entraremos em contato em breve.";
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Enviado com sucesso! ✓";
-            submitBtn.style.background = "#22c55e";
+            if (feedbackDiv) {
+                feedbackDiv.className = "form-feedback sucesso";
+                feedbackDiv.textContent = "✅ Mensagem enviada com sucesso! Entraremos em contato em breve.";
+            }
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviado com sucesso! ✓";
+                submitBtn.style.background = "#22c55e";
+            }
         });
 
         document.querySelectorAll('input, textarea').forEach(campo => {
@@ -92,28 +104,31 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. BOTÃO VOLTAR AO TOPO
     // ------------------------------------------------------------
     const btnTopo = document.getElementById("btn-topo");
+    if (btnTopo) {
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) {
+                btnTopo.classList.add("visivel");
+            } else {
+                btnTopo.classList.remove("visivel");
+            }
+        });
 
-    window.addEventListener("scroll", function() {
-        if (window.scrollY > 300) {
-            btnTopo.classList.add("visivel");
-        } else {
-            btnTopo.classList.remove("visivel");
-        }
-    });
-
-    btnTopo.addEventListener("click", function() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+        btnTopo.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 
     // ------------------------------------------------------------
     // 5. CARDS DE INTEGRANTES COM CLIQUE INTERATIVO
     // ------------------------------------------------------------
     const integranteCards = document.querySelectorAll("#integrantes .card");
+    console.log("Cards de integrantes encontrados:", integranteCards.length);
+    
     integranteCards.forEach(function(card) {
         card.addEventListener("click", function() {
-            const nome = this.querySelector(".card-title").textContent;
-            const cargo = this.querySelector("small").textContent;
-            alert(`${nome} - ${cargo}\n\n Gostou deste integrante? Faz parte da família Vortex Crew!`);
+            const nome = this.querySelector(".card-title")?.textContent || "Integrante";
+            const cargo = this.querySelector("small")?.textContent || "Membro";
+            alert(` ${nome} - ${cargo}\n\nGostou deste integrante? Faz parte da família Vortex Crew!`);
         });
         card.style.cursor = "pointer";
     });
@@ -128,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const targetId = this.getAttribute("href");
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
-                const navbarHeight = document.querySelector(".navbar").offsetHeight;
+                const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
                 const targetPosition = targetSection.offsetTop - navbarHeight;
                 window.scrollTo({ top: targetPosition, behavior: "smooth" });
             }
@@ -176,5 +191,38 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    // ------------------------------------------------------------
+    // 9. ADICIONA ANIMAÇÕES CSS FALTANTES
+    // ------------------------------------------------------------
+    if (!document.querySelector('#animacoes-vortex')) {
+        const style = document.createElement('style');
+        style.id = 'animacoes-vortex';
+        style.textContent = `
+            @keyframes piscar {
+                0%, 100% { border-color: #6d28d9; }
+                50% { border-color: transparent; }
+            }
+            @keyframes cair {
+                0% { top: -20px; transform: rotate(0deg); opacity: 1; }
+                100% { top: 100vh; transform: rotate(360deg); opacity: 0; }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                70% { opacity: 1; }
+                100% { opacity: 0; visibility: hidden; }
+            }
+            .menu-lista a.ativo {
+                background: #6d28d9 !important;
+                border-radius: 5px;
+                color: #fff !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
 });
